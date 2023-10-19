@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Rive Sample 1</title>
+    <style>
+      .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      #canvas {
+        max-width: 50%;
+        max-height: 50%;
+      }
+      .loading-bar {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 16px;
+        width: 300px;
+        background: #fff;
+        border: solid 2px grey;
+        border-radius: 18px;
+      }
+      @keyframes progressAnimationStrike {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      .bar {
+        animation: progressAnimationStrike 3s infinite;
+        height: 100%;
+        border-radius: 18px;
+        transition: all;
+        background: rgb(56, 158, 206);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="canvas" width="512" height="512"></canvas>
+      <div class="loading-bar">
+        <div class="bar" />
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<script src="https://unpkg.com/rive-canvas@0.0.10/rive.js"></script>
+<script src="https://unpkg.com/@rive-app/canvas@2.1.0"></script>
+<script>
+  const r = new rive.Rive({
+    src: "http://localhost:8000/public/tapping-fingers.riv",
+    canvas: document.getElementById("canvas"),
+    autoplay: true,
+    timeline: "Timeline 1",
+    onLoad: () => {
+      r.resizeDrawingSurfaceToCanvas();
+    },
+  });
+</script>
